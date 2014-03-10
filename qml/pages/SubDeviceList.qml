@@ -9,7 +9,6 @@ Page {
                 'tags':'view is empty'
     }
     property var js
-    property bool authenticated: true
 
     SilicaListView {
         id:listView

@@ -6,12 +6,7 @@ import QtQuick.LocalStorage 2.0
 import "include.js" as Js
 Page {
     id: mainPage
-    property bool authenticated: false
-    property var js: Js
-    function setAuthenticated(a) {
-        authenticated = !!a;
-        Js.modules.setPulley(pulldownModel);
-    }
+
     ListModel {
         id: devicesModel
     }
@@ -42,7 +37,7 @@ Page {
         header: PageHeader { title: "Ninjafish" }
         Row {
             width: parent.width
-            visible: !authenticated
+            visible: !root.authenticated
             Label {
 
                 height: mainPage.height
@@ -59,11 +54,7 @@ Page {
 
 
         Component.onCompleted: {
-            var access_token = Js.modules.settings.get('access_token');
-            if(access_token) {
-                Js.modules.auth(access_token);
-            }
-            //if no token exists yet, loadDevices just gets the model for later
+            Js.modules.auth(Js.modules.settings.get('access_token'));
             Js.modules.loadDevices(devicesModel);
 
             Js.modules.setPulley(pulldownModel);

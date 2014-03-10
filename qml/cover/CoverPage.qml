@@ -31,6 +31,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import QtQuick.LocalStorage 2.0
+import "../pages/include.js" as INC
+
 CoverBackground {
 
     Item {
@@ -80,4 +83,25 @@ CoverBackground {
 
     }
 
+
+    CoverActionList {
+        id: coverAction
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-previous"
+            onTriggered: {
+                var favourites = INC.modules.favourites.get();
+                INC.modules.actuate(favourites[0].id, favourites[0].data);
+            }
+        }
+        CoverAction {
+            iconSource: "image://theme/icon-cover-next"
+            onTriggered: {
+                var favourites = INC.modules.favourites.get();
+                INC.modules.actuate(favourites[1].id, favourites[1].data);
+            }
+        }
+    }
+
+    Component.onCompleted: INC.modules.auth(INC.modules.settings.get('access_token'));
 }

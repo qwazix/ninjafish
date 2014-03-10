@@ -26,7 +26,7 @@ var modules = {};
         pulley_callbacks = [];
         model.clear();
 
-        if(mainPage.authenticated) {
+        if(root.authenticated) {
 
             p({text:"Clear Everything", click:function(){ modules.settings.clear(); modules.auth();  }});
             p({text:'Log out', click:function(){ modules.auth(); }});
@@ -88,7 +88,7 @@ var modules = {};
     modules.auth = function(token) {
         if(!token) {
             console.log('yo. unauth.');
-            mainPage.setAuthenticated(false);
+            root.setAuthenticated(false);
             if(cached_model){
                 cached_model.clear();
             }
@@ -98,7 +98,7 @@ var modules = {};
 		modules.ninja = ninja({
             access_token: token
         });
-        mainPage.setAuthenticated(true);
+        root.setAuthenticated(true);
 	}
 
 	modules.actuate = function(id, options) {
@@ -109,7 +109,7 @@ var modules = {};
     };
     modules.loadDevices = function(model) {
         if(model){cached_model = model;}
-        if(cached_model && mainPage.authenticated) {
+        if(cached_model && root.authenticated) {
 
             modules.ninja.devices(function(err, devices) {
                 var deviceid,

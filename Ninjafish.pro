@@ -34,3 +34,4 @@ OTHER_FILES += qml/Ninjafish.qml \
     qml/pages/NamedColorPicker.qml \
     qml/cover/coverimage_black.png \
     qml/cover/coverimage_white.png
+    qml/pages/cover.js

@@ -29,7 +29,8 @@ var DEFAULT_TIMEOUT = 3 * 60 * 1000, // 3 minutes
 
 	setTimeout = function(fnc, time, start) {
         if (typeof start == "undefined") start = true;
-        var timer = Qt.createQmlObject('import QtQuick 2.0; Timer { repeat: false; running: false; }', mainPage);
+        var parent = root;// typeof mainPage!="undefined"?mainPage:coverPage
+        var timer = Qt.createQmlObject('import QtQuick 2.0; Timer { repeat: false; running: false; }', parent);
 		timer.interval = time;
 		timer.triggered.connect(fnc);
 		if (start) timer.start();

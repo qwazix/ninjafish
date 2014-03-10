@@ -32,10 +32,31 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
 
+import QtQuick.LocalStorage 2.0
+import "pages/include.js" as INC
+
 ApplicationWindow
 {
     initialPage: Component { DeviceList { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    id: root
+    property bool authenticated: false
+    property var js: INC
+    function setAuthenticated(a) {
+        authenticated = !!a;
+    }
+
+    Component.onCompleted: {
+        console.log('comp');
+        var access_token = INC.modules.settings.get('access_token');
+        console.log(access_token)
+        if(!access_token) {
+            console.log('hey!', access_token);
+        } else {
+            INC.modules.auth(access_token);
+            console.log('autgh!');
+        }
+    }
 }
 
 
