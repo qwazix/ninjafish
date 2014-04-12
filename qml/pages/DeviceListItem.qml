@@ -189,7 +189,7 @@ Item {
 
             Component.onCompleted: {
 
-                isHidden = root.js.modules.hiddendevices.contains({id:model.id,shortName:model.shortName}) !== -1
+                isHidden = mainPage.js.modules.hiddendevices.contains({id:model.id,shortName:model.shortName}) !== -1
             }
 
         }

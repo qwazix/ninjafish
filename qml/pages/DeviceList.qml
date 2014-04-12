@@ -6,7 +6,7 @@ import QtQuick.LocalStorage 2.0
 import "include.js" as Js
 Page {
     id: mainPage
-
+    property var js: Js
     ListModel {
         id: devicesModel
     }
